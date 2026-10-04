@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="SkiWeatherProfile" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/weather/weather_profile.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+state_name = &"Clear"
+description = "Long visibility, firm packed snow, and calm air."
+sky_color = Color(0.31, 0.59, 0.84, 1)
+horizon_color = Color(0.72, 0.85, 0.94, 1)
+ambient_color = Color(0.63, 0.76, 0.88, 1)
+sunlight_color = Color(1, 0.93, 0.78, 1)
+sunlight_energy = 1.35
+fog_density = 0.0015
+visibility_distance = 1000.0
+snowfall_intensity = 0.0
+accumulation_rate = 0.0
+wind_direction = Vector3(0.2, 0, -1)
+wind_speed = 1.5
+drag_multiplier = 1.0
+score_multiplier = 1.0

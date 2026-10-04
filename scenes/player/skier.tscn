@@ -1,0 +1,195 @@
+[gd_scene load_steps=23 format=3]
+
+[ext_resource type="Script" path="res://scripts/player/skier_controller.gd" id="1_controller"]
+[ext_resource type="Resource" path="res://resources/tuning/default_ski_tuning.tres" id="2_tuning"]
+[ext_resource type="Script" path="res://scripts/player/ski_ground_probe.gd" id="3_probe"]
+[ext_resource type="Script" path="res://scripts/player/trick_controller.gd" id="4_tricks"]
+[ext_resource type="Script" path="res://scripts/player/crash_controller.gd" id="5_crash"]
+[ext_resource type="Script" path="res://scripts/scoring/landing_evaluator.gd" id="6_landing"]
+[ext_resource type="Script" path="res://scripts/scoring/score_manager.gd" id="7_score"]
+[ext_resource type="Script" path="res://scripts/scoring/combo_manager.gd" id="8_combo"]
+[ext_resource type="Script" path="res://scripts/camera/ski_camera.gd" id="9_camera"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape_skier"]
+radius = 0.34
+height = 1.4
+
+[sub_resource type="StandardMaterial3D" id="Material_jacket"]
+albedo_color = Color(0.035, 0.22, 0.39, 1)
+roughness = 0.72
+
+[sub_resource type="StandardMaterial3D" id="Material_pants"]
+albedo_color = Color(0.025, 0.035, 0.055, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="Material_skin"]
+albedo_color = Color(0.89, 0.59, 0.42, 1)
+roughness = 0.8
+
+[sub_resource type="StandardMaterial3D" id="Material_skis"]
+albedo_color = Color(0.95, 0.22, 0.075, 1)
+metallic = 0.18
+roughness = 0.36
+
+[sub_resource type="StandardMaterial3D" id="Material_goggles"]
+albedo_color = Color(0.055, 0.75, 0.95, 1)
+metallic = 0.62
+roughness = 0.18
+
+[sub_resource type="BoxMesh" id="BoxMesh_body"]
+material = SubResource("Material_jacket")
+size = Vector3(0.58, 0.83, 0.38)
+
+[sub_resource type="SphereMesh" id="SphereMesh_head"]
+material = SubResource("Material_skin")
+radius = 0.22
+height = 0.44
+
+[sub_resource type="BoxMesh" id="BoxMesh_goggles"]
+material = SubResource("Material_goggles")
+size = Vector3(0.38, 0.13, 0.08)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_limb_jacket"]
+material = SubResource("Material_jacket")
+radius = 0.085
+height = 0.66
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_limb_pants"]
+material = SubResource("Material_pants")
+radius = 0.10
+height = 0.72
+
+[sub_resource type="BoxMesh" id="BoxMesh_ski"]
+material = SubResource("Material_skis")
+size = Vector3(0.13, 0.055, 1.86)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_pole"]
+material = SubResource("Material_pants")
+top_radius = 0.018
+bottom_radius = 0.018
+height = 1.35
+
+[node name="Skier" type="CharacterBody3D" groups=["player", "skier"]]
+collision_layer = 2
+collision_mask = 1
+floor_stop_on_slope = false
+script = ExtResource("1_controller")
+tuning = ExtResource("2_tuning")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+position = Vector3(0, 0.75, 0)
+shape = SubResource("CapsuleShape_skier")
+
+[node name="VisualRoot" type="Node3D" parent="."]
+
+[node name="LeanRoot" type="Node3D" parent="VisualRoot"]
+
+[node name="Torso" type="MeshInstance3D" parent="VisualRoot/LeanRoot"]
+position = Vector3(0, 1.15, 0)
+rotation = Vector3(-0.16, 0, 0)
+mesh = SubResource("BoxMesh_body")
+
+[node name="Head" type="MeshInstance3D" parent="VisualRoot/LeanRoot"]
+position = Vector3(0, 1.77, -0.06)
+mesh = SubResource("SphereMesh_head")
+
+[node name="Goggles" type="MeshInstance3D" parent="VisualRoot/LeanRoot"]
+position = Vector3(0, 1.79, -0.205)
+mesh = SubResource("BoxMesh_goggles")
+
+[node name="LeftArm" type="MeshInstance3D" parent="VisualRoot/LeanRoot"]
+position = Vector3(-0.36, 1.12, -0.05)
+rotation = Vector3(-0.38, 0, -0.44)
+mesh = SubResource("CapsuleMesh_limb_jacket")
+
+[node name="RightArm" type="MeshInstance3D" parent="VisualRoot/LeanRoot"]
+position = Vector3(0.36, 1.12, -0.05)
+rotation = Vector3(-0.38, 0, 0.44)
+mesh = SubResource("CapsuleMesh_limb_jacket")
+
+[node name="LeftLeg" type="MeshInstance3D" parent="VisualRoot/LeanRoot"]
+position = Vector3(-0.18, 0.54, 0.02)
+rotation = Vector3(0.16, 0, -0.10)
+mesh = SubResource("CapsuleMesh_limb_pants")
+
+[node name="RightLeg" type="MeshInstance3D" parent="VisualRoot/LeanRoot"]
+position = Vector3(0.18, 0.54, 0.02)
+rotation = Vector3(0.16, 0, 0.10)
+mesh = SubResource("CapsuleMesh_limb_pants")
+
+[node name="LeftSki" type="MeshInstance3D" parent="VisualRoot/LeanRoot"]
+position = Vector3(-0.22, 0.085, -0.16)
+mesh = SubResource("BoxMesh_ski")
+
+[node name="RightSki" type="MeshInstance3D" parent="VisualRoot/LeanRoot"]
+position = Vector3(0.22, 0.085, -0.16)
+mesh = SubResource("BoxMesh_ski")
+
+[node name="LeftPole" type="MeshInstance3D" parent="VisualRoot/LeanRoot"]
+position = Vector3(-0.49, 0.68, 0.03)
+rotation = Vector3(-0.34, 0, -0.12)
+mesh = SubResource("CylinderMesh_pole")
+
+[node name="RightPole" type="MeshInstance3D" parent="VisualRoot/LeanRoot"]
+position = Vector3(0.49, 0.68, 0.03)
+rotation = Vector3(-0.34, 0, 0.12)
+mesh = SubResource("CylinderMesh_pole")
+
+[node name="GroundProbes" type="Node3D" parent="."]
+script = ExtResource("3_probe")
+
+[node name="CenterProbe" type="RayCast3D" parent="GroundProbes"]
+position = Vector3(0, 0.31, 0.12)
+target_position = Vector3(0, -0.52, 0)
+collision_mask = 1
+
+[node name="LeftSkiProbe" type="RayCast3D" parent="GroundProbes"]
+position = Vector3(-0.22, 0.29, 0.12)
+target_position = Vector3(0, -0.50, 0)
+collision_mask = 1
+
+[node name="RightSkiProbe" type="RayCast3D" parent="GroundProbes"]
+position = Vector3(0.22, 0.29, 0.12)
+target_position = Vector3(0, -0.50, 0)
+collision_mask = 1
+
+[node name="TrailEmitters" type="Node3D" parent="."]
+
+[node name="LeftTrail" type="Marker3D" parent="TrailEmitters"]
+position = Vector3(-0.22, 0.055, 0.30)
+
+[node name="RightTrail" type="Marker3D" parent="TrailEmitters"]
+position = Vector3(0.22, 0.055, 0.30)
+
+[node name="SnowSprayOrigin" type="Marker3D" parent="."]
+position = Vector3(0, 0.12, 0.38)
+
+[node name="TrickController" type="Node" parent="."]
+script = ExtResource("4_tricks")
+tuning = ExtResource("2_tuning")
+
+[node name="CrashController" type="Node" parent="."]
+script = ExtResource("5_crash")
+tuning = ExtResource("2_tuning")
+
+[node name="LandingEvaluator" type="Node" parent="."]
+script = ExtResource("6_landing")
+
+[node name="ScoreManager" type="Node" parent="."]
+script = ExtResource("7_score")
+
+[node name="ComboManager" type="Node" parent="ScoreManager"]
+script = ExtResource("8_combo")
+
+[node name="CameraRig" type="Node3D" parent="."]
+script = ExtResource("9_camera")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraRig"]
+collision_mask = 1
+spring_length = 5.2
+margin = 0.15
+
+[node name="Camera3D" type="Camera3D" parent="CameraRig/SpringArm3D"]
+current = true
+fov = 68.0
+near = 0.08

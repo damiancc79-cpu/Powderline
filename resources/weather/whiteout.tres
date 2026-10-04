@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="SkiWeatherProfile" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/weather/weather_profile.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+state_name = &"Whiteout"
+description = "Near-zero contrast, crosswind, and the highest risk multiplier."
+sky_color = Color(0.52, 0.56, 0.59, 1)
+horizon_color = Color(0.72, 0.74, 0.75, 1)
+ambient_color = Color(0.55, 0.58, 0.6, 1)
+sunlight_color = Color(0.68, 0.71, 0.73, 1)
+sunlight_energy = 0.27
+fog_density = 0.072
+visibility_distance = 72.0
+snowfall_intensity = 1.0
+accumulation_rate = 0.19
+wind_direction = Vector3(0.92, 0.05, -0.38)
+wind_speed = 17.0
+drag_multiplier = 1.12
+score_multiplier = 1.45

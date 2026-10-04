@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="SkiWeatherProfile" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/weather/weather_profile.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+state_name = &"Light Snow"
+description = "Soft flakes slowly refill old tracks."
+sky_color = Color(0.43, 0.57, 0.69, 1)
+horizon_color = Color(0.72, 0.78, 0.82, 1)
+ambient_color = Color(0.61, 0.69, 0.76, 1)
+sunlight_color = Color(0.87, 0.9, 0.92, 1)
+sunlight_energy = 0.86
+fog_density = 0.009
+visibility_distance = 520.0
+snowfall_intensity = 0.34
+accumulation_rate = 0.045
+wind_direction = Vector3(0.35, 0, -1)
+wind_speed = 4.0
+drag_multiplier = 1.025
+score_multiplier = 1.08

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="SkiWeatherProfile" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/weather/weather_profile.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+state_name = &"Heavy Snow"
+description = "Rapid accumulation and extra drag reward committed lines."
+sky_color = Color(0.32, 0.39, 0.47, 1)
+horizon_color = Color(0.63, 0.68, 0.71, 1)
+ambient_color = Color(0.48, 0.54, 0.6, 1)
+sunlight_color = Color(0.75, 0.8, 0.84, 1)
+sunlight_energy = 0.5
+fog_density = 0.027
+visibility_distance = 220.0
+snowfall_intensity = 0.78
+accumulation_rate = 0.12
+wind_direction = Vector3(-0.65, 0, -1)
+wind_speed = 8.5
+drag_multiplier = 1.075
+score_multiplier = 1.22

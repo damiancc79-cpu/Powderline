@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SnowSurfaceProfile" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/terrain/snow_surface_profile.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+surface_id = 2
+display_name = &"Existing Tracks"
+friction_multiplier = 0.84
+edge_grip_multiplier = 0.93
+spray_multiplier = 0.54
+speed_multiplier = 1.04
+powder_amount = 0.12
+debug_color = Color(0.56, 0.74, 0.87, 1)

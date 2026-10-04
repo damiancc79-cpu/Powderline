@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SnowSurfaceProfile" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/terrain/snow_surface_profile.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+surface_id = 1
+display_name = &"Packed Snow"
+friction_multiplier = 1.0
+edge_grip_multiplier = 1.0
+spray_multiplier = 1.0
+speed_multiplier = 1.0
+powder_amount = 0.32
+debug_color = Color(0.73, 0.86, 0.95, 1)

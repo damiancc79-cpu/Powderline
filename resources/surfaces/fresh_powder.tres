@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SnowSurfaceProfile" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/terrain/snow_surface_profile.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+surface_id = 0
+display_name = &"Fresh Powder"
+friction_multiplier = 1.42
+edge_grip_multiplier = 0.78
+spray_multiplier = 1.65
+speed_multiplier = 0.91
+powder_amount = 1.0
+debug_color = Color(0.93, 0.97, 1, 1)

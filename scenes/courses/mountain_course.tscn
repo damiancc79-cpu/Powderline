@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/environment/mountain_course.gd" id="1_course"]
+[ext_resource type="Script" path="res://scripts/terrain/terrain_manager.gd" id="2_terrain"]
+[ext_resource type="Script" path="res://scripts/terrain/snow_surface_grid.gd" id="3_grid"]
+[ext_resource type="Script" path="res://scripts/weather/weather_manager.gd" id="4_weather"]
+[ext_resource type="Script" path="res://scripts/terrain/ski_trail_renderer.gd" id="5_trails"]
+[ext_resource type="Script" path="res://scripts/terrain/snow_spray_emitter.gd" id="6_spray"]
+
+[node name="MountainCourse" type="Node3D"]
+script = ExtResource("1_course")
+
+[node name="Terrain" type="StaticBody3D" parent="."]
+script = ExtResource("2_terrain")
+
+[node name="SnowSurfaceGrid" type="Node" parent="Terrain"]
+script = ExtResource("3_grid")
+
+[node name="WeatherManager" type="Node3D" parent="."]
+script = ExtResource("4_weather")
+
+[node name="SkiTrailRenderer" type="Node3D" parent="."]
+script = ExtResource("5_trails")
+
+[node name="SnowSprayEmitter" type="Node3D" parent="."]
+script = ExtResource("6_spray")
+
+[node name="SpawnPoint" type="Marker3D" parent="."]
+
+[node name="Decorations" type="Node3D" parent="."]
+
+[node name="CourseGeometry" type="Node3D" parent="."]
+
+[node name="Triggers" type="Node3D" parent="."]

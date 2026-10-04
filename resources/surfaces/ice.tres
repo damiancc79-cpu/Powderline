@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SnowSurfaceProfile" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/terrain/snow_surface_profile.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+surface_id = 3
+display_name = &"Blue Ice"
+friction_multiplier = 0.24
+edge_grip_multiplier = 0.46
+spray_multiplier = 0.12
+speed_multiplier = 1.18
+powder_amount = 0.0
+can_be_tracked = false
+debug_color = Color(0.23, 0.65, 0.86, 1)
